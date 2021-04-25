@@ -44,20 +44,41 @@ int get_random(int n){ // 0 ~ n
     return ret;
 }
 
-void get_coprimes (vector<int>& arr,int n) {
+int Gcd(int m,int n){
+    int o;
+    while(n>0){
+        o=m%n;
+        m=n;
+        n=o;
+    }
+    return m;
+}
+
+void get_coprimes(vector<int>& arr, int n) {
     vector<int>().swap(arr); //清空元素
 
-    for(int i=2;i<=n;i++){
-        bool flag = true;
-        for(int j=2;j<=i/2;j++){
-            if(i%j == 0) {
-                flag = false;
-                break;
-            }
-        }
-
-        if (flag && i != 2) {
+    for(int i=2;i<n;i++){
+        int b=Gcd(i,n);
+        if(b==1){
             arr.push_back(i);
         }
-    }
+    }  
 }
+
+// void get_coprimes (vector<int>& arr,int n) {
+//     vector<int>().swap(arr); //清空元素
+
+//     for(int i=2;i<=n;i++){
+//         bool flag = true;
+//         for(int j=2;j<=i/2;j++){
+//             if(i%j == 0) {
+//                 flag = false;
+//                 break;
+//             }
+//         }
+
+//         if (flag && i != 2) {
+//             arr.push_back(i);
+//         }
+//     }
+// }
